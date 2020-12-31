@@ -1,0 +1,66 @@
+rule "Periodically check presence"
+when
+    Time cron "*/15 * * * * ?"
+then
+        if (presence.state == "ON")
+        {
+                if(gMobiles.members.filter[s | s.state == ON].size == 0) {
+                        logInfo("PresenceCheck", "No network device within reach, checking for flapping")
+//			logInfo("PresenceCheck", gMobiles.members.filter[t | t.changedSince(now.minusMinutes(20))].size) 
+                        if(gMobiles.members.filter[r | r.changedSince(now.minusMinutes(20))].size == 0) {
+                                logInfo("PresenceCheck", "Nobody is at home")
+                                sendCommand(presence, OFF)
+                        }
+                }
+        }
+        else
+        {
+                //For initialisation. If Presence is undefined or off, although it should be on.
+                if(gMobiles.members.filter(s | s.state == ON).size > 0) {
+                        sendCommand(presence, ON)
+                }
+                else if (presence.state == UNDEF ) {
+                        sendCommand(presence, OFF)
+                }
+        }
+
+end
+rule "Coming home"
+when
+        Item gMobiles changed
+then
+        if (presence.state != ON) {
+                if(gMobiles.members.filter(s | s.state == ON).size > 0) {
+                        logInfo("PresenceCheck", "Somebody is home")
+                        sendCommand(presence, ON)
+                }
+        }
+end
+
+rule "presence"
+when
+    Item presence changed
+then
+    if (presence.state == ON) {
+//        sendCommand(master_fan,2)
+	if((now.getHourOfDay()>=9 && now.getHourOfDay<=21) || (now.getHourOfDay() >= 9 && dayLight.state==ON)) {
+//		sendCommand(livingFav, "Welcome to Classical!")
+//		sendCommand(livingVol, 35)
+	}else{
+		logInfo("INFO","No music, time out of bounds")
+	}
+	sendCommand(familyLamp,ON)
+//	pushover ("Presence ON")
+    }
+    else if (presence.state == OFF) {
+        sendCommand(master_fan,0)
+	sendCommand(iolinc, OFF)
+	sendCommand(bedroomControl,PAUSE)
+	sendCommand(roamControl,PAUSE)
+	sendCommand(livingControl,PAUSE)
+	sendCommand(connControl,PAUSE)
+	sendCommand(familyLamp,OFF)
+//	pushover ("Presence OFF")
+    }
+end
+

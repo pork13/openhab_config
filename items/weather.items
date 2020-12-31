@@ -1,0 +1,66 @@
+Group Weather_Atmo
+Group Weather_Cond
+Group Weather_Precip
+Group Weather_Station
+Group Weather_Temp
+Group Weather_Wind
+
+// atmosphere
+Number   Humidity         "Humidity [%d %%]"      (Weather_Atmo)  {weather="locationId=home, type=atmosphere, property=humidity"}
+Number   Visibility       "Visibility [%.2f km]"  (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=visibility"}
+//Number   Visibility_Mph   "Visibility [%.2f mi]"  (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=visibility, unit=mph"}
+Number   Pressure         "Pressure [%.2f mb]"    (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=pressure"}
+Number   Pressure_Inches  "Pressure [%.2f inHg]"    (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=pressure, unit=inches"}
+String   Pressure_Trend   "Pressuretrend [%s]"    (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=pressureTrend"}
+//Number   Ozone            "Ozone [%d ppm]"        (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=ozone"}
+Number   UV_Index         "UV Index"              (Weather_Atmo) {weather="locationId=home, type=atmosphere, property=uvIndex, scale=0"}
+
+// clouds
+Number   Clouds   "Clouds [%.0f %%]" (Weather_Atmo)  {weather="locationId=home, type=clouds, property=percent"}
+
+// condition
+Number   Temperature      "Temperature [%.0f °C]" (Weather_Cond) {weather="locationId=home, type=temperature, property=current"}
+Number   TemperatureFeel  "Feels Like [%.0f °C]" (Weather_Cond) {weather="locationId=home, type=temperature, property=feel"}
+Number   Temp_Dewpoint    "Dewpoint [%.2f °C]"          (Weather_Temp)	{weather="locationId=home, type=temperature, property=dewpoint"}
+String   Condition        "Condition [%s]"      (Weather_Cond)	{weather="locationId=home, type=condition, property=text"}
+//String   Condition_ID     "Condition id [%s]"   (Weather_Cond)	{weather="locationId=home, type=condition, property=id"}
+DateTime ObservationTime  "Obs Time [%1$tY-%1$tm-%1$td %1$tH:%1$tM]" (Weather_Cond)  {weather="locationId=home, type=condition, property=observationTime"}
+DateTime LastUpdate       "Last update [%1$tY-%1$tm-%1$td %1$tH:%1$tM]"   (Weather_Cond)     {weather="locationId=home, type=condition, property=lastUpdate"}
+String   CommonId         "Common id [%s]"      (Weather_Cond)	{weather="locationId=home, type=condition, property=commonId"}
+String   CommonCondition   "[MAP(en_weather.map):%s]" (Weather_Cond)  {weather="locationId=home, type=condition, property=commonId"}
+
+// precipitation
+Number   Rain          "Rain [%.2f mm/h]"   (Weather_Precip)	{weather="locationId=home, type=precipitation, property=rain"}
+Number   Snow          "Snow [%.2f mm/h]"   (Weather_Precip)	{weather="locationId=home, type=precipitation, property=snow"}
+Number   Precip_Probability   "POP [%d %%]"  (Weather_Precip) {weather="locationId=home, type=precipitation, property=probability"}
+// new total property in 1.8, only Wunderground
+Number   Precip_Total         "Precip total [%d mm]"   (Weather_Precip)	{weather="locationId=home, type=precipitation, property=total"}
+
+// min and max values only available in forecasts
+Number   Temp_Min         "Temperature min [%.2f °C]"   (Weather_Temp)	{weather="locationId=home, forecast=1, type=temperature, property=min"}
+Number   Temp_Max         "Temperature max [%.2f °C]"   (Weather_Temp)	{weather="locationId=home, forecast=1, type=temperature, property=max"}
+String   Temp_MinMax      "Min/Max [%s °C]"             (Weather_Temp)	{weather="locationId=home, forecast=1, type=temperature, property=minMax"}
+
+// wind
+Number   Wind_Speed           "Windspeed [%.2f km/h]"    (Weather_Wind)	{weather="locationId=home, type=wind, property=speed"}
+Number   Wind_Speed_Beaufort  "Windspeed Beaufort [%d]"  (Weather_Wind)	{weather="locationId=home, type=wind, property=speed, unit=beaufort"}
+Number   Wind_Speed_Knots     "Windspeed [%.2f kn]"      (Weather_Wind)	{weather="locationId=home, type=wind, property=speed, unit=knots"}
+//Number   Wind_Speed_Mps       "Windspeed [%.2f mps]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=speed, unit=mps"}
+//Number   Wind_Speed_Mph       "Windspeed [%.2f mph]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=speed, unit=mph"}
+String   Wind_Direction       "Wind direction [%s]"      (Weather_Wind)	{weather="locationId=home, type=wind, property=direction"}
+Number   Wind_Degree          "Wind degree [%.0f °]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=degree"}
+Number   Wind_Gust            "Wind gust [%.2f km/h]"    (Weather_Wind)	{weather="locationId=home, type=wind, property=gust"}
+Number   Wind_Gust_Beaufort   "Wind gust Beaufort [%d]"  (Weather_Wind)	{weather="locationId=home, type=wind, property=gust, unit=beaufort"}
+Number   Wind_Gust_Knots      "Wind gust [%.2f kn]"      (Weather_Wind)	{weather="locationId=home, type=wind, property=gust, unit=knots"}
+//Number   Wind_Gust_Mps        "Wind gust [%.2f mps]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=gust, unit=mps"}
+//Number   Wind_Gust_Mph        "Wind gust [%.2f mph]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=gust, unit=mph"}
+Number   Wind_Chill           "Wind chill [%.2f °C]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=chill"}
+//Number   Wind_Chill_F         "Wind chill [%.2f °F]"     (Weather_Wind)	{weather="locationId=home, type=wind, property=chill, unit=fahrenheit"}
+
+// weather station (only Wunderground and Hamweather), needs version 1.7 or greater of the binding
+String   Station_Name         "Station Name [%s]"        (Weather_Station) {weather="locationId=home, type=station, property=name"}
+String   Station_Id           "Station Id [%s]"          (Weather_Station) {weather="locationId=home, type=station, property=id"}
+Number   Station_Latitude     "Station Latitude [%.6f]"  (Weather_Station) {weather="locationId=home, type=station, property=latitude, scale=6"}
+Number   Station_Longitude    "Station Longitude [%.6f]" (Weather_Station) {weather="locationId=home, type=station, property=longitude, scale=6"}
+
+

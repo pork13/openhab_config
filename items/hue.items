@@ -1,0 +1,20 @@
+Color  foyerLamp  "Foyer Lamp"   <colorlight> (gGF,Lights)       {channel="hue:0210:001788223627:1color", alexa="Lighting"}
+Color  Toggle_2   "center bulb"  <colorlight> (Lights)  {channel="hue:0210:001788223627:2:color", alexa="Lighting"}
+Color  Toggle_3   "right bulb"   <colorlight> (Lights)  {channel="hue:0210:001788223627:3:color", alexa="Lighting"}
+Dimmer Toggle_4   "back north blub"   <dimmablelight> (Outdoor) {channel="hue:0100:001788223627:4:brightness", alexa="Lighting"}
+Dimmer Toggle_5   "back south bulb"   <dimmablelight> (Outdoor) {channel="hue:0100:001788223627:5:brightness", alexa="Lighting"}
+Color  Toggle_6   "front north blub"  <colorlight> (Outdoor)    {channel="hue:0210:001788223627:6:color", alexa="Lighting"}
+Color  Toggle_7   "front south blub"  <colorlight> (Outdoor)    {channel="hue:0210:001788223627:7:color", alexa="Lighting"}
+Color  Toggle_8   "basement NE"  <colorlight> (Lights)  {channel="hue:0210:001788223627:13:color", alexa="Lighting"}
+Color  Toggle_9   "basement SE"  <colorlight> (Lights)  {channel="hue:0210:001788223627:9:color", alexa="Lighting"}
+Color  Toggle_10   "basement SW" <colorlight> (Lights)  {channel="hue:0210:001788223627:10:color", alexa="Lighting"}
+Color  Toggle_11   "basement NW" <colorlight> (Lights)  {channel="hue:0210:001788223627:11:color", alexa="Lighting"}
+
+Dimmer extGarage  "Garage" <dimmablelight> (Outdoor)  {channel="hue:0100:001788223627:12:brightness", alexa="Lighting"}
+
+Color  officeLamp   "Office Lamp"  <colorlight> (gFF,Lights) {channel="hue:0210:001788223627:17:color", alexa="Lighting"}
+Color  office_1   "Office 1"  <colorlight> (gFF,Lights) {channel="hue:0210:001788223627:15:color", alexa="Lighting"}
+Color  office_2   "Office 2"  <colorlight> (gFF,Lights) {channel="hue:0210:001788223627:16:color", alexa="Lighting"}
+
+Color  ensuite_l   "Ensuite Left"  <colorlight> (gFF,Lights) {channel="hue:0210:001788223627:18:color", alexa="Lighting"}
+Color  ensuite_r   "Ensuite Right"  <colorlight> (gFF,Lights) {channel="hue:0210:001788223627:19:color", alexa="Lighting"}

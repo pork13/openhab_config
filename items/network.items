@@ -1,0 +1,10 @@
+Group:Switch:OR (ON,OFF)  gMobiles
+
+Switch presence "Presence"
+//Switch JeffPhone    (gMobiles) {channel="network:pingdevice:phone_jeff:online"}
+//Switch LariPhone    (gMobiles) {channel="network:pingdevice:phone_lari:online"}
+//Switch LariPad    (gMobiles) {channel="network:pingdevice:pad_lari:online"}
+Group:Switch:OR (ON,OFF)	gSamsung "TV Power [(%s)]" 
+Switch tv_power_sBinding  "TV" (gMobiles, gSamsung) ["Switching"] {channel="samsungtv:tv:09896800_00a0_1000_817d_508569242e07:power"}
+Switch tv_power_nBinding  "TV Network Binding"   (gSamsung) {channel="network:pingdevice:samsung:online"}
+

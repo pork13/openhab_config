@@ -1,0 +1,10 @@
+Group Weather_Astro
+
+//DateTime        Date     "Date [%1$ta, %1$tY-%1$tm-%1$td %1$tT]"    <calendar> (Weather_Astro)    { channel="ntp:ntp:local:dateTime" }
+// weather astro
+DateTime      daylightStart     "Rise [%1$tH:%1$tM]"	<sunrise> (Weather_Astro)  {channel="astro:sun:local:daylight#start"}
+DateTime      daylightEnd       "Set [%1$tH:%1$tM]" 	<sunset> (Weather_Astro)  {channel="astro:sun:local:daylight#end"}
+Switch        dayLight					(Weather_Astro)  
+Number		Azimuth            "Azimuth"            (Weather_Astro)    { channel="astro:sun:local:position#azimuth" }
+Number  	Elevation          "Elevation"          (Weather_Astro)    { channel="astro:sun:local:position#elevation" }
+

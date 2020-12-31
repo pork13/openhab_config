@@ -1,0 +1,48 @@
+rule "saystuff"
+when
+    Time cron "0/40 * * * * ?"
+then
+// voicerss:enGB
+// marytts:cmuslthsmm
+
+    //say("The quick brown fox jumped over the lazy dog.","voicerss:enGB","sonos:PLAY1:RINCON_000E58CFD48601400") //bedroom
+    //say(actualTemperature.state,"voicerss:enGB","sonos:PLAY1:RINCON_000E58CFD48601400") //bedroom
+    //say("Living","voicerss:enGB","sonos:PLAY3:RINCON_B8E9373B178201400") //living
+    //sendCommand(roamNotification, "https://drive.google.com/open?id=1rgbYnyl-F6asS0kFwfdx1cqF3Jx4X7bl")
+    //say("Hello Twenty!","marytts:cmuslthsmm","sonos:PLAY3:RINCON_000E58FD29A001400") // roam
+    //say("Test","voicerss:enGB","sonos:CONNECT:RINCON_949F3E2217EE01400") //connect
+end
+
+rule "tardis"
+when
+    Item tardis changed
+then
+    if (tardis.state == ON) {
+//	logInfo("TrackURI", livingTrack)
+//	logInfo("NotificationURI", livingNotification)
+	logInfo("TARDIS Materialising.", "0")
+	sendCommand (douglasFir, ON)
+//	livingNotification.sendCommand("https://drive.google.com/open?id=1rgbYnyl-F6asS0kFwfdx1cqF3Jx4X7bl")
+//	sendCommand(livingNotification, "https://drive.google.com/open?id=10TI46NkBmC9My5iowhL2fiGcc_PUXTwm") //WAV
+	playSound("sonos:PLAY3:RINCON_B8E9373B178201400","tardis.wav",new PercentType(25))
+	Thread::sleep(1000)
+	sendCommand(douglasFir, OFF)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, ON)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, OFF)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, ON)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, OFF)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, ON)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, OFF)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, ON)
+	Thread::sleep(1000)
+	sendCommand(douglasFir, OFF)
+	sendCommand(tardis, OFF)
+    }
+end

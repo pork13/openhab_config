@@ -1,0 +1,92 @@
+sitemap default label="pOrkhive"
+{
+	Frame {
+		Group item=gFF label="Second Floor" icon="firstfloor"
+		Group item=gGF label="Ground Floor" icon="groundfloor"
+		Group item=gC label="Basement" icon="cellar"	
+//		Group item=Kitchen label="Kitchen" icon="kitchen"	
+		Group item=Outdoor icon="garden" 
+		Switch item=master_fan mappings=[ 0="OFF",  1="LOW", 2="MEDIUM", 3="HIGH"] icon="fan"
+		Switch item=Lights
+		Switch item=doorLock
+		Switch item=tardis
+	}
+//	Frame {
+ //               Switch item=chart_period label="Fancy Graph" mappings=[0="Hour", 1="Day", 2="Week", 3="Month"]
+//                Chart item=gTemp period=h refresh=300 visibility=[chart_period==0, chart_period=="Uninitialized"]
+//       		Chart item=gTemp period=D refresh=300 visibility=[chart_period==1]
+//            	Chart item=gTemp period=W refresh=300 visibility=[chart_period==2]
+//            	Chart item=gTemp period=M refresh=300 visibility=[chart_period==3]
+//                Chart item=gHum period=h refresh=300 visibility=[chart_period==0, chart_period=="Uninitialized"]
+//                Chart item=gHum period=D refresh=300 visibility=[chart_period==1]
+//                Chart item=gHum period=W refresh=300 visibility=[chart_period==2]
+//                Chart item=gHum period=M refresh=300 visibility=[chart_period==3]
+
+//        }
+/*	Frame label="Wx" {
+		Group item=Weather_Station label="Wx Station"
+		Group item=Weather_Atmo label="Atmospheric Conditions"
+		Group item=Weather_Cond label="Current Conditions"
+		Group item=Weather_Precip label="Precipitation"
+		Group item=Weather_Temp label="Temperature"
+		Group item=Weather_Wind label="Wind"
+	}
+ */
+       Frame label="Presence" {
+                Group item=gMobiles label="gMobiles [%s]"
+		Switch item=presence icon=present
+        }
+	Frame label="Hue" {
+		Colorpicker         item=foyerLamp               label="Foyer"
+        	Colorpicker         item=Toggle_2                label="Laundry Hall"
+        	Colorpicker         item=Toggle_3                label="Basement Stairs"
+
+		Switch         item=Toggle_4                label="Back North"
+		Switch         item=Toggle_5                label="Back South"
+
+        	Colorpicker         item=Toggle_6                label="Front North"
+        	Colorpicker         item=Toggle_7                label="Front South"
+	}
+	Frame label="Media" {
+		Switch item=tv_power_sBinding	
+		Group item=sonos label="Sonos"
+		Group item=plex label="Plex"
+	}
+
+	Frame label="Astro" {
+		Group item=Weather_Astro
+		//Text item=Date
+	}
+
+	Frame label="Sensors" {
+		Group item=gSensors
+		Group item=gMotionSensors
+	}
+//	Frame label="Thermostat" {
+ //   		Text item=lastModified
+//    		Text item=actualTemperature
+//    		Text item=actualHumidity
+//    		Switch item=hvacMode label="HVAC Mode" mappings=[heat=Heat,cool=Cool,auto=Auto,off=Off]
+//    		Text item=currentClimateRef
+//    		Switch item=desiredComf mappings=[sleep=Sleep,wakeup=Wake,home=Home,away=Away,smart6=Gym,resume=Resume]
+//    		Setpoint item=desiredTemp label="Temp [%.1f °C]" minValue=17 maxValue=24 step=1 visibility=[hvacMode==heat,hvacMode==cool]
+//		Switch item=desiredFan mappings=[on=On,auto=Auto] // for rule supported in 1.9
+//    		Setpoint item=desiredHeat label="Heat [%.1f °C]" minValue=50 maxValue=80 step=1 visibility=[hvacMode==auto]
+//    		Setpoint item=desiredCool label="Cool [%.1f °C]" minValue=50 maxValue=80 step=1 visibility=[hvacMode==auto]
+ // 	}
+/*
+	Frame label="Keypad" {
+      		Switch item=ctl_btn_a label="button A"
+      		//Switch item=keypadSwitchFastOnOff label="fast on/off"
+      		//Switch item=keypadSwitchManualChange label="manual change" mappings=[ 0="DOWN", 1="STOP",  2="UP"]
+      		Switch item=ctl_btn_b label="button B"
+      		Switch item=ctl_btn_c label="button C"
+      		Switch item=ctl_btn_d label="button D"
+      		Switch item=ctl_btn_e label="button E"
+      		Switch item=ctl_btn_f label="button F"
+      		Switch item=ctl_btn_g label="button G"
+      		Switch item=ctl_btn_h label="button H"
+	}
+*/
+}
+

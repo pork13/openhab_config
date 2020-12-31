@@ -1,0 +1,4 @@
+OPEN=open
+CLOSED=closed
+-=unknown
+NULL=null

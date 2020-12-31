@@ -1,0 +1,16 @@
+rule "lock1"
+when
+    Item doorLock changed
+then
+  logInfo("LOCK",doorLock.state);
+  sendPushoverMessage(pushoverBuilder("Front Door "+doorLock.state)); 
+end
+
+rule "lock2"
+when
+  Item doorLockAlarmString changed
+then
+  logInfo("LOCK",doorLockAlarmString.toString);
+  sendPushoverMessage(pushoverBuilder("DOOR "+doorLockAlarmString.toString));
+end
+

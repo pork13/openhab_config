@@ -1,0 +1,202 @@
+import org.joda.time
+
+var Timer bathtimer = null
+var Timer foyerTimer = null
+var Timer backTimer = null
+rule "Log Timers"
+when
+	Time cron "0/5 * * * * ?"
+then
+//	logInfo("Door",doorBack.state.toString)
+//	logInfo("Timers",bathtimer.toString)
+//	logInfo("Timers",foyerTimer.state.toString)
+//	logInfo("Timers",backTimer.toString)
+end
+
+rule "Startup Notice"
+when
+	System started
+then
+//	pushover("System Started")
+end
+
+/*
+rule "Bathroom Timer"
+when
+	Item ensuite_fan received update ON
+then
+    logInfo("porkRules","bathroom fan on")
+    if(bathtimer==null) {
+        // first ON command, so create a timer to turn the light off again
+        logInfo("porkRules", "Bathroom Fan Timer armed")
+        bathtimer = createTimer(now.plusMinutes(10)) [|
+            sendCommand(ensuite_fan, OFF)
+            logInfo("porkRules", "Bathroom Fan timer ran")
+//	    bathtimer = null
+        ]
+    } else {
+        // subsequent ON command, so reschedule the existing timer
+        logInfo("porkRules", "Bathroom Fan Timer re-armed")
+        bathtimer.reschedule(now.plusMinutes(5))
+    }
+end
+rule "Bathroom Timer Cancel"
+when
+	Item ensuite_fan received update OFF
+then
+    // remove any previously scheduled timer
+    if(bathtimer!==null) {
+        bathtimer.cancel()
+//        bathtimer=null
+        logInfo("porkRules", "Bathroom Fan Timer disarmed")
+    }
+end
+*/
+
+rule "frontOpen"
+when
+	Item doorFront received update OPEN
+then
+	if (foyerTimer!==null) {
+           foyerTimer.cancel()
+//           foyerTimer=null
+        }
+	sendCommand(foyerLamp, ON)
+	sendCommand(foyer, ON)
+	if (presence.state == OFF) {
+	   pushover("Front Door Open!")
+	}
+end
+
+rule "frontClose"
+when
+	Item doorFront received update CLOSED
+then
+	if (foyerTimer!==null) {
+	   foyerTimer.cancel()
+//	   foyerTimer=null
+	}
+	foyerTimer = createTimer(now.plusSeconds(200)) [|
+		sendCommand(foyerLamp, OFF)
+		sendCommand(foyer, OFF)
+//		foyerTimer = null
+	]
+end
+
+rule "backOpen"
+when
+        Item doorBack received update OPEN
+then
+       	if (backTimer!==null) {
+           backTimer.cancel()
+//           backTimer=null
+        }
+        sendCommand(Toggle_4, ON)
+        sendCommand(Toggle_5, ON)
+	logInfo("Door","Back door open")
+        if (presence.state == OFF) {
+           pushover("Back Door Open!")
+        }
+end
+
+rule "backClose"
+when
+        Item doorBack received update CLOSED
+then
+	if (backTimer!==null) {
+	   backTimer.cancel()
+//	   backTimer=null
+	}
+	logInfo("Door","Back door closed")
+        backTimer = createTimer(now.plusSeconds(300)) [|
+                sendCommand(Toggle_4, OFF)
+                sendCommand(Toggle_5, OFF)
+//		backTimer = null
+        ]
+end
+
+rule "basement_motion"
+when
+    Item zSensor2Bin received update ON
+then
+    sendCommand(laundry,ON)
+    sendCommand(Toggle_2,ON) //hall
+    sendCommand(Toggle_3,ON) //stairs
+    sendCommand(Toggle_8,ON) //NW
+    sendCommand(Toggle_11,ON) //NE
+    sendCommand(Toggle_9,ON) //stairs
+    sendCommand(Toggle_10,ON) //stairs
+    logInfo("porkRules", "Basement Motion Detected")
+//    pushover("Basement Motion detected")
+end
+
+rule "basement_motion_end"
+when
+        Item zSensor2Bin received update OFF
+then
+        sendCommand(laundry, OFF)
+        sendCommand(Toggle_2, OFF)
+        sendCommand(Toggle_3, OFF)
+        sendCommand(Toggle_8, OFF)
+        sendCommand(Toggle_9, OFF)
+        sendCommand(Toggle_10, OFF)
+        sendCommand(Toggle_11, OFF)
+end
+
+rule "ensuite_motion"
+when
+    Item zSensor1Bin received update
+then
+    sendCommand(ensuite_l,zSensor1Bin.state.toString)
+    sendCommand(ensuite_r,zSensor1Bin.state.toString)
+    logInfo("porkRules", "Ensuite Motion "+zSensor1Bin.state)
+end
+
+rule "sauna_motion"
+when
+    Item zSensor3Bin received update
+then
+    logInfo("porkRules", "Sauna Motion "+zSensor3Bin.state)
+end
+
+rule "office_motion"
+when 
+    Item zSensor4Bin received update
+then
+    sendCommand(officeLamp,zSensor4Bin.state.toString)
+    sendCommand(office_1,zSensor4Bin.state.toString)
+    sendCommand(office_2,zSensor4Bin.state.toString)
+    logInfo("porkRules", "Office Motion "+zSensor4Bin.state)
+end
+
+
+rule "sunrise"
+when
+    Channel 'astro:sun:local:daylight#event' triggered START 
+then
+//    sendCommand(master_fan,0)
+    logInfo("porkRules", "Sunrise Occurred")
+//    pushover("Sunrise!")
+    sendCommand(dayLight,ON)
+    Outdoor.send(OFF)
+    //say("Good morning.")
+end
+
+rule "sunset"
+when
+    Channel 'astro:sun:local:daylight#event' triggered END
+then
+    logInfo("porkRules", "Sunset Occurred")
+//    sendCommand(master_fan,1)
+//    pushover("Sunset!")
+    sendCommand(dayLight,OFF)
+    Outdoor.send(ON)
+end
+
+rule "alloff"
+when
+    Item ctl_btn_b received update ON
+then
+    Lights.send(OFF)
+    sendCommand(ctl_btn_b,OFF)
+end

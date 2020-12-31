@@ -1,0 +1,21 @@
+Group plex <video>
+Group plexAllie <video> (plex)
+
+Switch PlexTVPowerA	"Power"         <video>		(plexAllie) 	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#power"}
+String PlexTVStatusA	"Status [%s]"	<video>		(plexAllie)	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#state"}
+String PlexTVTitleA	"Title [%s]"	<video>		(plexAllie)	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#title"}
+String PlexTVTypeA	"Type [%s]"	<video>		(plexAllie)	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#type"}
+String PlexTVCoverA	"Cover"		<video>		(plexAllie)	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#playback/cover"}
+
+Dimmer PlexTVProgressA   "Progress [%.1f%%]"    <video>    (plexAllie)	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#playback/progress"}
+DateTime PlexTVEndTimeA  "End time [%1$tR]"     <video>    (plexAllie)	{plex="B309632B-1A7F-459C-918A-DB54AE3A98AD#playback/endTime"}
+
+Switch PlexTVPower      "Power"         <video>         (plex)  {plex="p7chu5arytzy6#power"}
+String PlexTVStatus     "Status [%s]"   <video>         (plex)  {plex="p7chu5arytzy6#state"}
+String PlexTVTitle      "Title [%s]"    <video>         (plex)  {plex="p7chu5arytzy6#title"}
+String PlexTVType       "Type [%s]"     <video>         (plex)  {plex="p7chu5arytzy6#type"}
+String PlexTVCover      "Cover"         <video>         (plex)  {plex="p7chu5arytzy6#playback/cover"}
+
+Dimmer PlexTVProgress   "Progress [%.1f%%]"    <video>    (plex)        {plex="p7chu5arytzy6#playback/progress"}
+DateTime PlexTVEndTime  "End time [%1$tR]"     <video>    (plex)        {plex="p7chu5arytzy6#playback/endTime"}
+

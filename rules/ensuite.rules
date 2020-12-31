@@ -1,0 +1,42 @@
+var Number humidity2_LastValue = 0
+var Number humidity2_LastUpdated = 0
+var Number humidity2_LowWater = 0
+
+rule "ensuite_humidity"
+when
+    Item zSensor1Hum changed
+then
+    // get the current value
+    var Number humidity = zSensor1Hum.state as DecimalType
+
+    // check if the humidity is rising or falling...
+    if (humidity2_LastValue > 0) {
+        if (humidity > humidity2_LastValue) {
+            // get the difference since our last update
+            var Number humidityDelta = humidity - humidity2_LastValue
+            var Number timeDeltaMs = now.millis - humidity2_LastUpdated
+        
+            // calculate the rate of change - % per minute
+            var Number rateOfChange = humidityDelta / timeDeltaMs
+            var Number rateOfChangePerMin = rateOfChange * 60000
+
+            // check if rising rapidly (faster than 6% per min)
+            if (rateOfChangePerMin >= 6 && rateOfChangePerMin < 40 && ensuite_fan.state == OFF) {
+                logInfo("heating", "Bathroom humidity increasing at " + rateOfChangePerMin + "%/min - turning on fan")
+                ensuite_fan.sendCommand(ON)
+		humidity2_LowWater = humidity2_LastValue
+            }
+        } else {
+            // check if humidity is falling and drops below the low water mark set when the fan turned on
+            if (humidity <= humidity2_LowWater && ensuite_fan.state == ON) {
+                logInfo("heating", "Bathroom humidity dropped to " + humidity + "% - turning off fan")
+                ensuite_fan.sendCommand(OFF)
+		humidity2_LowWater = 0
+            }
+        }
+    }
+    
+    // update our 'last' value/update dttm so we can track the rate of increase
+    humidity2_LastValue = humidity
+    humidity2_LastUpdated = now.millis
+end

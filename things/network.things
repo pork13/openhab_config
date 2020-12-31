@@ -1,0 +1,5 @@
+network:pingdevice:samsung    [ hostname="192.168.69.20",  port=0, retry=1, timeout=5000, refresh_interval=60000, use_system_ping="false", dhcplisten="true" ]
+network:pingdevice:pad_lari [ hostname="192.168.69.111", port=0, retry=15, timeout=5000, refresh_interval=60000, use_system_ping="false", dhcplisten="true" ]
+//network:pingdevice:phone_jeff [ hostname="192.168.69.12", port=0, retry=15, timeout=5000, refresh_interval=60000, use_system_ping="false", dhcplisten="true" ]
+network:pingdevice:phone_lari [ hostname="192.168.69.103", port=0, retry=15, timeout=5000, refresh_interval=60000, use_system_ping="false", dhcplisten="true" ]
+network:pingdevice:oldphone_lari [ hostname="192.168.69.136", port=0, retry=15, timeout=5000, refresh_interval=60000, use_system_ping="false", dhcplisten="true" ]

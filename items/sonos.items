@@ -1,0 +1,27 @@
+Group sonos <player>
+Switch tardis "Tardis"               ["Switchable"] {alexa="Switchable"} 
+Switch publicAddress "Public Address" (sonos) {channel="sonos:CONNECT:RINCON_949F3E2217EE01400:publicaddress"}
+
+Player roamControl	"Roam Control: [%s]"	 		(sonos) {channel="sonos:PLAY1:RINCON_000E58CFD4B201400:control"}
+Number roamVol		"Roam Vol: [%.2f]" <soundvolume>	(sonos) {channel="sonos:PLAY1:RINCON_000E58CFD4B201400:volume"}
+String roamFav  	"Roam Fav: [%s]"    <text>			{channel="sonos:PLAY1:RINCON_000E58CFD4B201400:favorite"}
+String roamZone   	"Roam Zone:  [%s]"  <text>		(sonos) {channel="sonos:PLAY1:RINCON_000E58CFD4B201400:zonename"}
+String roamNotification "Roam NotificationURI: [%s]"	<text> 	(sonos) {channel="sonos:PLAY1:RINCON_000E58CFD4B201400:notificationsound"}
+
+Player livingControl	"LivingRm Control: [%s]"		(sonos) {channel="sonos:PLAY3:RINCON_B8E9373B178201400:control"}
+Number livingVol	"LivingRm Vol: [%.2f]" <soundvolume>	(sonos) {channel="sonos:PLAY3:RINCON_B8E9373B178201400:volume"}
+String livingFav	"LivingRm Fav: [%s]"  <text>   			{channel="sonos:PLAY3:RINCON_B8E9373B178201400:favorite"}
+String livingZone	"LivingRm Zone: [%s]"  <text>   	(sonos) {channel="sonos:PLAY3:RINCON_B8E9373B178201400:zonename"}
+String livingNotification "LR NotificationURI: [%s]"	<text> 	(sonos) {channel="sonos:PLAY3:RINCON_B8E9373B178201400:notificationsound"}
+//String livingTrack	 "LR TrackURI: [%s]"	<text> 		(sonos) {channel="sonos:PLAY3:RINCON_B8E9373B178201400:currenttrackuri"}
+
+Player bedroomControl	"BR Control: [%s]"			(sonos) {channel="sonos:PLAY3:RINCON_000E58FD29A001400:control"}
+Number bedroomVol	"BR Vol: [%.2f]"	<soundvolume>	(sonos) {channel="sonos:PLAY3:RINCON_000E58FD29A001400:volume"}
+String bedroomFav	"BR Fav: [%s]"	<text>				{channel="sonos:PLAY3:RINCON_000E58FD29A001400:favorite"}
+String bedroomZone	"BR Zone: [%s]"	<text>			(sonos) {channel="sonos:PLAY3:RINCON_000E58FD29A001400:zonename"}
+String bedroomNotification "BR NotificationURI: [%s]"	<text> 	(sonos) {channel="sonos:PLAY3:RINCON_000E58FD29A001400:notificationsound"}
+
+Player connControl	"Connect Control: [%s]" 		(sonos) {channel="sonos:CONNECT:RINCON_949F3E2217EE01400:control"}
+Number connVol		"Connect Vol: [%.2f]" 	<soundvolume>	(sonos) {channel="sonos:CONNECT:RINCON_949F3E2217EE01400:volume"}
+String connFav		"Connect Fav: [%s]" 	<text>			{channel="sonos:CONNECT:RINCON_949F3E2217EE01400:favorite"}
+String connZone		"Connect Zone: [%s]" 	<text>		(sonos) {channel="sonos:CONNECT:RINCON_949F3E2217EE01400:zonename"}

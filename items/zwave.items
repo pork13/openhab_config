@@ -1,0 +1,53 @@
+Number chart_period
+
+Contact doorBack "Z Back Door [MAP(contact.map):%s]" <frontdoor> (gMotionSensors) {channel="zwave:device:163ce1a0550:node3:sensor_door"}
+Number doorBackBatteryLevel "Z Back Door sensor battery level [%.1f]" <battery> (gSensors) {channel="zwave:device:163ce1a0550:node3:battery-level"}
+
+Contact doorFront "Z Front door [MAP(contact.map):%s]" <frontdoor> (gMotionSensors) {channel="zwave:device:163ce1a0550:node2:sensor_door"}
+Number doorFrontBatteryLevel "Z Front door sensor battery level [%.1f]" <battery> (gSensors) {channel="zwave:device:163ce1a0550:node2:battery-level"}
+
+Switch doorLock "Z Front lock %s" <lock> {channel="zwave:device:163ce1a0550:node16:lock_door"}
+Number doorLockBattery "Z Front Lock Batt [%.1f]" <battery> {channel="zwave:device:163ce1a0550:node16:battery-level"}
+Number doorLockAlarm "Z Front Alarm" <siren> (gSensors) {channel="zwave:device:163ce1a0550:node16:alarm_number"}
+String doorLockAlarmString "Z Front Alarm Raw" <siren> (gSensors) {channel="zwave:device:163ce1a0550:node16:alarm_raw"}
+
+Dimmer familyLamp           "Leg Lamp"           (gGF,Lights)    {channel="zwave:device:163ce1a0550:node7:switch_dimmer", alexa="Lighting"}
+Dimmer masterReading        "Reading Lamp"      (gFF,Lights)   	 {channel="zwave:device:163ce1a0550:node6:switch_dimmer", alexa="Lighting"}
+//Dimmer masterReading2       "Reading Lights"      (gFF,Lights)   {channel="zwave:device:163ce1a0550:node19:switch_dimmer", alexa="Lighting"}
+
+Switch ensuite_fan	 "Ensuite Fan"  (gFF)			{channel="zwave:device:163ce1a0550:node22:switch_binary", alexa="Switchable"}
+Switch sauna_master 	 "Sauna Master" (Outdoor) 		{channel="zwave:device:163ce1a0550:node21:switch_binary", alexa="Switchable"}
+
+Switch douglasFir	"Douglas"	(gGF,Lights)		[ "Lighting" ] 	   {channel="zwave:device:163ce1a0550:node15:switch_binary", alexa="Switchable"}
+Group gTemp
+Group gHum
+
+Switch  zSensor1Bin   "ZSensor1 Binary: [%s]"	(gMotionSensors) {channel="zwave:device:163ce1a0550:node8:alarm_motion"}
+Number  zSensor1Hum   "ZSensor1 Hum [%.1f]"	<humidity> (gSensors,gHist,gHum) ["CurrentHumidity"] {channel="zwave:device:163ce1a0550:node8:sensor_relhumidity"}
+Number  zSensor1UV    "ZSensor1 UV [%.1f]"	<sun> (gSensors) {channel="zwave:device:163ce1a0550:node8:sensor_ultraviolet"}
+Number:Temperature  zSensor1Temp  "ZSensor1 Temp [%.1f]"	<temperature> (gSensors,gHist,gTemp) ["TemperatureSensor"] {channel="zwave:device:163ce1a0550:node8:sensor_temperature"}
+Number  zSensor1Light "ZSensor1 Light [%.1f]"	<light> (gSensors,gHist) {channel="zwave:device:163ce1a0550:node8:sensor_luminance"}
+Contact zSensor1Alarm "ZSensor1 Alarm: [%s]"	<siren> (gSensors) {channel="zwave:device:163ce1a0550:node8:alarm_general"}
+Number  zSensor1Batt  "ZSensor1 Batt: [%.1f]"	<battery> (gSensors) {channel="zwave:device:163ce1a0550:node8:battery-level"}
+
+Switch  zSensor2Bin   "ZSensor2 Binary: [%s]"   (gMotionSensors) {channel="zwave:device:163ce1a0550:node24:alarm_motion"}
+Number  zSensor2Hum   "ZSensor2 Hum [%.1f]"     <humidity> (gSensors,gHist,gHum) ["CurrentHumidity"] {channel="zwave:device:163ce1a0550:node24:sensor_relhumidity"}
+Number  zSensor2UV    "ZSensor2 UV [%.1f]"      <sun> (gSensors) {channel="zwave:device:163ce1a0550:node24:sensor_ultraviolet"}
+Number:Temperature  zSensor2Temp  "ZSensor2 Temp [%.1f]"    <temperature> (gSensors,gHist,gTemp) ["TemperatureSensor"] {channel="zwave:device:163ce1a0550:node24:sensor_temperature"}
+Number  zSensor2Light "ZSensor2 Light [%.1f]"   <light> (gSensors,gHist) {channel="zwave:device:163ce1a0550:node24:sensor_luminance"}
+Contact zSensor2Alarm "ZSensor2 Alarm: [%s]"    <siren> (gSensors) {channel="zwave:device:163ce1a0550:node24:alarm_general"}
+Number  zSensor2Batt  "ZSensor2 Batt: [%.1f]"   <battery> (gSensors) {channel="zwave:device:163ce1a0550:node24:battery-level"}
+
+Switch  zSensor3Bin   "ZSensor3 Binary: [%s]"   (gMotionSensors) {channel="zwave:device:163ce1a0550:node23:alarm_motion"}
+Number  zSensor3Hum   "ZSensor3 Hum [%.1f]"     <humidity> (gSensors,gHist,gHum) ["CurrentHumidity"] {channel="zwave:device:163ce1a0550:node23:sensor_relhumidity"}
+Number  zSensor3UV    "ZSensor3 UV [%.1f]"      <sun> (gSensors) {channel="zwave:device:163ce1a0550:node23:sensor_ultraviolet"}
+Number:Temperature  zSensor3Temp  "ZSensor3 Temp [%.1f]"    <temperature> (gSensors,gHist,gTemp) ["TemperatureSensor"] {channel="zwave:device:163ce1a0550:node23:sensor_temperature"}
+Number  zSensor3Light "ZSensor3 Light [%.1f]"   <light> (gSensors,gHist) {channel="zwave:device:163ce1a0550:node23:sensor_luminance"}
+Contact zSensor3Alarm "ZSensor3 Alarm: [%s]"    <siren> (gSensors) {channel="zwave:device:163ce1a0550:node23:alarm_general"}
+Number  zSensor3Batt  "ZSensor3 Batt: [%.1f]"   <battery> (gSensors) {channel="zwave:device:163ce1a0550:node23:battery-level"}
+
+Switch  zSensor4Bin   "ZSensor4 Binary: [%s]"   (gMotionSensors) {channel="zwave:device:163ce1a0550:node20:alarm_motion"}
+Number:Temperature  zSensor4Temp  "ZSensor4 Temp [%.1f]"    <temperature> (gSensors,gHist,gTemp) ["TemperatureSensor"] {channel="zwave:device:163ce1a0550:node20:sensor_temperature"}
+Number  zSensor4Light "ZSensor4 Light [%.1f]"   <light> (gSensors,gHist) {channel="zwave:device:163ce1a0550:node20:sensor_luminance"}
+Number  zSensor4Batt  "ZSensor4 Batt: [%.1f]"   <battery> (gSensors) {channel="zwave:device:163ce1a0550:node20:battery-level"}
+

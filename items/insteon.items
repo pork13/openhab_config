@@ -1,0 +1,50 @@
+//iolinc
+Switch iolinc		"Fireplace"		<fire> (gGF)		{channel="insteon:device:8b2a2fed:15E689:switch", alexa="Switchable"} 
+
+Group All 
+Group gFF <firstfloor> (All)
+Group gGF <groundfloor> (All)
+Group gC  <cellar> (All)
+Group Outdoor <outdoorlight>  
+Group Kitchen <kitchen> (gGF) 
+Group Family <family> (gGF)   
+Group gSensors
+Group gHist
+Group:Contact:OR(OPEN,CLOSED) gMotionSensors "Motion [%s]" (gSensors)
+
+Group:Switch:OR	(ON,OFF)    Lights 	"All Lights [(%s)]" {alexa="Switchable"}
+
+//Dimmer officeLamp           "Office Lamp"           (gFF,Lights)    	{channel="insteon:device:8b2a2fed:158C87:dimmer", alexa="Lighting"}
+Switch extXmas              "ext christmas"         (Outdoor)       	{channel="insteon:device:8b2a2fed:13FD63:switch", alexa="Outlet"}
+Dimmer xmasTree             "Piano"		    (gGF,Lights)    	{channel="insteon:device:8b2a2fed:158D98:dimmer", alexa="Lighting"}
+Dimmer master_lamp          "Master Lamp"         (gFF,Lights)	    	{channel="insteon:device:8b2a2fed:1548DA:dimmer", alexa="Lighting"}
+Dimmer xmasRight            "Right Candle"         (Outdoor)	   	{channel="insteon:device:8b2a2fed:158DE1:dimmer", alexa="Lighting"}
+Switch roku                 "Roku"                  (gFF)           	{channel="insteon:device:8b2a2fed:16D6D0:switch", alexa="Switchable"}
+
+Dimmer upstairsHallSlave 	"Upstairs Hall Slave" 	        		{channel="insteon:device:8b2a2fed:16251E:dimmer"}
+Dimmer upstairsHall 		"Upstairs Hall [%s %%]" (gFF,Lights)		{channel="insteon:device:8b2a2fed:162A50:dimmer", alexa="Lighting"}
+Dimmer foyer			"Foyer Overhead[%s %%]" (gGF,Lights)		{channel="insteon:device:8b2a2fed:135CB9:dimmer", alexa="Lighting"}
+Dimmer laundry			"Laundry Room[%s %%]"   (gC,Lights)		{channel="insteon:device:8b2a2fed:162922:dimmer", alexa="Lighting"}
+//Dimmer office			"Office"                (gFF,Lights)		{insteonplm="16.45.aa:F00.00.01#dimmer"}
+Dimmer kitchen_island		"Kitchen Island[%s %%]" (Kitchen,Lights)	{channel="insteon:device:1af55ee2:loadDimmer", alexa="Lighting"}
+Switch kitchen_a		"kit btn A [%d %%]"					{channel="insteon:device:1af55ee2:keypadButtonA"}
+Switch kitchen_b		"kit btn B [%d %%]"					{channel="insteon:device:1af55ee2:keypadButtonB"}
+Switch kitchen_c		"kit btn C [%d %%]"					{channel="insteon:device:1af55ee2:keypadButtonC"}
+Switch kitchen_d		"kit btn D [%d %%]"					{channel="insteon:device:1af55ee2:keypadButtonD"}
+Dimmer kitchen_range		"Kitchen Range[%s %%]"  (Kitchen,Lights)	{channel="insteon:device:8b2a2fed:162321:dimmer", alexa="Lighting"}
+Dimmer family_main		"Family Main[%s %%]"    (Family,Lights)		{channel="insteon:device:8b2a2fed:162664:dimmer", alexa="Lighting"}
+Dimmer family_fire		"Family Fire[%s %%]"    (Family,Lights)		{channel="insteon:device:8b2a2fed:1620FD:dimmer", alexa="Lighting"}
+Dimmer master_light		"Master Light [%d %%]"  (gFF,Lights) 		{channel="insteon:device:8b2a2fed:21E0D1:lightDimmer", alexa="Lighting"}
+Number master_fan		"Master Fan"            <fan> (gFF) 		{channel="insteon:device:8b2a2fed:21E0D1:fan", alexa="RangeController.rangeValue" [supportedRange="0:3:1",presets="0=@Value.Off:Off,1=@Value.Minimum:@Value.Low:Lowest,2=@Value.Medium,3=@Value.Maximum:@Value.High:Highest",friendlyNames="@Setting.FanSpeed,Speed"]}
+Dimmer master_light_slave	"Master Light Slave"			        {channel="insteon:device:8b2a2fed:0FD81D:dimmer"}
+Dimmer ensuite_light		"Ensuite Light[%s %%]"  (gFF,Lights)		{channel="insteon:device:8b2a2fed:162D49:dimmer", alexa="Lighting"}
+
+Dimmer ctl_btn_a		"ctl btn A [%d %%]" 		{channel="insteon:device:8b2a2fed:167909:loadDimmer"}
+Switch ctl_btn_b	    "ctl btn B [%d %%]"  		{channel="insteon:device:8b2a2fed:167909:keypadButtonB"}
+Switch ctl_btn_c	   	"ctl btn C [%d %%]"  		{channel="insteon:device:8b2a2fed:167909:keypadButtonC"}
+Switch ctl_btn_d	   	"ctl btn D [%d %%]"  		{channel="insteon:device:8b2a2fed:167909:keypadButtonD"}
+Switch ctl_btn_e	   	"ctl btn E [%d %%]"  		{channel="insteon:device:8b2a2fed:167909:keypadButtonE"}
+Switch ctl_btn_f	   	"ctl btn F [%d %%]"  		{channel="insteon:device:8b2a2fed:167909:keypadButtonF"}
+Switch ctl_btn_g	   	"ctl btn G [%d %%]"  		{channel="insteon:device:8b2a2fed:167909:keypadButtonG"}
+Switch ctl_btn_h	   	"ctl btn H [%d %%]"  (Kitchen)	{channel="insteon:device:8b2a2fed:167909:keypadButtonH"}
+Switch ctl_button_beep		"ctl btn beep" 	(gFF)		{channel="insteon:device:8b2a2fed:167909:beep"}	
